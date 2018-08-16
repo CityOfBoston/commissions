@@ -28,9 +28,8 @@ export default class ApplyPage extends React.Component<Props> {
     push,
     remove,
     handleBlur,
-    commissionIds
+    commissionID
   ) {
-    console.log(checkedCommissionIds);
     const checked = checkedCommissionIds.includes(commission.id.toString());
     return (
       <li
@@ -50,6 +49,7 @@ export default class ApplyPage extends React.Component<Props> {
           }}
           onBlur={handleBlur}
           checked={checked}
+          {...commissionID}
         />
       </li>
     );
