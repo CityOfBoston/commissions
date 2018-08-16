@@ -1,5 +1,6 @@
 import React from 'react';
 import TextInput from '../../client/common/TextInput';
+import CommentInput from '../../client/common/CommentInput';
 import { Formik, FieldArray } from 'formik';
 import * as Yup from 'yup';
 import Head from 'next/head';
@@ -12,12 +13,13 @@ import fetchCommissions, {
 
 export interface Props {
   commissions: Commission[];
+  commissionID: any;
 }
 
 export default class ApplyPage extends React.Component<Props> {
-  static async getInitialProps(): Promise<Props> {
+  static async getInitialProps({ query: { commissionID } }): Promise<Props> {
     const commissions = await fetchCommissions();
-    return { commissions };
+    return { commissions, commissionID };
   }
 
   renderCommission(
@@ -25,10 +27,11 @@ export default class ApplyPage extends React.Component<Props> {
     checkedCommissionIds: string[],
     push,
     remove,
-    handleBlur
+    handleBlur,
+    commissionIds
   ) {
+    console.log(checkedCommissionIds);
     const checked = checkedCommissionIds.includes(commission.id.toString());
-
     return (
       <li
         style={{ listStyleType: 'none' }}
@@ -54,6 +57,15 @@ export default class ApplyPage extends React.Component<Props> {
 
   render() {
     const { commissions } = this.props;
+    const { commissionID } = this.props;
+
+    const commissionsWithoutOpenSeats = commissions.filter(
+      commission => commission.openSeats === 0
+    );
+    const commissionsWithOpenSeats = commissions.filter(
+      commission => commission.openSeats > 0
+    );
+
     return (
       <div className="mn">
         <Head>
@@ -74,11 +86,12 @@ export default class ApplyPage extends React.Component<Props> {
               phone: '',
               email: '',
               confirmEmail: '',
-              commissionIds: [] as string[],
+              commissionIds: [commissionID] as string[],
               typeOfDegree: '',
               degreeAttained: '',
               educationalInstitution: '',
               otherInformation: '',
+              comments: '',
             }}
             validationSchema={Yup.object().shape({
               zip: Yup.string()
@@ -130,6 +143,7 @@ export default class ApplyPage extends React.Component<Props> {
                 2,
                 'Other Information Needs To Be Valid'
               ),
+              comments: Yup.string().required(),
             })}
             onSubmit={() => {}}
             render={({
@@ -281,10 +295,8 @@ export default class ApplyPage extends React.Component<Props> {
                   error={touched.confirmEmail && errors.confirmEmail}
                   onBlur={handleBlur}
                 />
-
                 <hr className="hr hr--sq" />
                 <SectionHeader title="Education and Experience" />
-
                 <TextInput
                   title="Type of Degree"
                   name="typeOfDegree"
@@ -294,7 +306,6 @@ export default class ApplyPage extends React.Component<Props> {
                   error={touched.typeOfDegree && errors.typeOfDegree}
                   onBlur={handleBlur}
                 />
-
                 <TextInput
                   title="Degree Attained"
                   name="degreeAttained"
@@ -304,7 +315,6 @@ export default class ApplyPage extends React.Component<Props> {
                   error={touched.degreeAttained && errors.degreeAttained}
                   onBlur={handleBlur}
                 />
-
                 <TextInput
                   title="Educational Institution"
                   name="educationalInstitution"
@@ -317,7 +327,6 @@ export default class ApplyPage extends React.Component<Props> {
                   }
                   onBlur={handleBlur}
                 />
-
                 <TextInput
                   title="Other Information"
                   name="otherInformation"
@@ -327,22 +336,57 @@ export default class ApplyPage extends React.Component<Props> {
                   error={touched.otherInformation && errors.otherInformation}
                   onBlur={handleBlur}
                 />
+
                 <hr className="hr hr--sq" />
                 <SectionHeader title="Boards and Commissions" />
+                <h2>
+                  Please note that many of these Boards and Commissions require
+                  City of Boston residency.
+                </h2>
 
+                <SectionHeader title="Boards and Commissions without open positions" />
                 <FieldArray
                   name="commissionIds"
                   render={({ push, remove }) => (
                     <ul>
-                      {commissions.map(commission =>
+                      {commissionsWithoutOpenSeats.map(commission =>
                         this.renderCommission(
                           commission,
                           values.commissionIds,
                           push,
                           remove,
-                          handleBlur
+                          handleBlur,
+                          commissionID
                         )
                       )}
+
+                      <div className="t--subinfo t--err m-t100">
+                        {touched.commissionIds && errors.commissionIds}
+                      </div>
+                    </ul>
+                  )}
+                />
+
+                <SectionHeader title="Boards and Commissions with open positions" />
+                <FieldArray
+                  name="commissionIds"
+                  render={({ push, remove }) => (
+                    <ul>
+                      {commissionsWithOpenSeats.map(commission =>
+                        this.renderCommission(
+                          commission,
+                          values.commissionIds,
+                          push,
+                          remove,
+                          handleBlur,
+                          commissionID
+                        )
+                      )}
+                      <h4>
+                        You can still apply for a board or commission that does
+                        not currently have any open positions, and we will
+                        review your application when a seat opens.
+                      </h4>
                       <div className="t--subinfo t--err m-t100">
                         {touched.commissionIds && errors.commissionIds}
                       </div>
@@ -350,6 +394,17 @@ export default class ApplyPage extends React.Component<Props> {
                   )}
                 />
                 <hr className="hr hr--sq" />
+                <SectionHeader title="Reference Information" />
+
+                <hr className="hr hr--sq" />
+                <SectionHeader title="Comments" />
+                <CommentInput
+                  name="comments"
+                  placeholder="Other Comments"
+                  value={values.comments}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
 
                 <button type="submit" className="btn btn--700">
                   Send Message
