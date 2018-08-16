@@ -13,7 +13,7 @@ import fetchCommissions, {
 
 export interface Props {
   commissions: Commission[];
-  commissionID: any;
+  commissionID: string | undefined;
 }
 
 export default class ApplyPage extends React.Component<Props> {
@@ -27,8 +27,7 @@ export default class ApplyPage extends React.Component<Props> {
     checkedCommissionIds: string[],
     push,
     remove,
-    handleBlur,
-    commissionID
+    handleBlur
   ) {
     const checked = checkedCommissionIds.includes(commission.id.toString());
     return (
@@ -49,7 +48,6 @@ export default class ApplyPage extends React.Component<Props> {
           }}
           onBlur={handleBlur}
           checked={checked}
-          {...commissionID}
         />
       </li>
     );
@@ -355,8 +353,7 @@ export default class ApplyPage extends React.Component<Props> {
                           values.commissionIds,
                           push,
                           remove,
-                          handleBlur,
-                          commissionID
+                          handleBlur
                         )
                       )}
 
@@ -378,8 +375,7 @@ export default class ApplyPage extends React.Component<Props> {
                           values.commissionIds,
                           push,
                           remove,
-                          handleBlur,
-                          commissionID
+                          handleBlur
                         )
                       )}
                       <h4>
