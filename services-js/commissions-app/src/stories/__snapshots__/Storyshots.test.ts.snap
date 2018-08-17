@@ -69,6 +69,13 @@ exports[`Storyshots ApplyPage default 1`] = `
               htmlFor="FeedbackForm-\${this.props.name}"
             >
               First Name
+              <span
+                aria-hidden="true"
+                className="t--req"
+              >
+                 
+                Required
+              </span>
             </label>
             <input
               className="txt-f txt-f--sm"
@@ -77,7 +84,6 @@ exports[`Storyshots ApplyPage default 1`] = `
               onBlur={[Function]}
               onChange={[Function]}
               placeholder="First Name"
-              required={undefined}
               type="text"
               value=""
             />
@@ -94,6 +100,13 @@ exports[`Storyshots ApplyPage default 1`] = `
               htmlFor="FeedbackForm-\${this.props.name}"
             >
               Initial
+              <span
+                aria-hidden="true"
+                className="t--req"
+              >
+                 
+                Required
+              </span>
             </label>
             <input
               className="txt-f txt-f--sm"
@@ -102,7 +115,6 @@ exports[`Storyshots ApplyPage default 1`] = `
               onBlur={[Function]}
               onChange={[Function]}
               placeholder="Middle Initial"
-              required={undefined}
               type="text"
               value=""
             />
@@ -119,6 +131,13 @@ exports[`Storyshots ApplyPage default 1`] = `
               htmlFor="FeedbackForm-\${this.props.name}"
             >
               Last Name
+              <span
+                aria-hidden="true"
+                className="t--req"
+              >
+                 
+                Required
+              </span>
             </label>
             <input
               className="txt-f txt-f--sm"
@@ -127,7 +146,6 @@ exports[`Storyshots ApplyPage default 1`] = `
               onBlur={[Function]}
               onChange={[Function]}
               placeholder="Last Name"
-              required={undefined}
               type="text"
               value=""
             />
@@ -148,6 +166,13 @@ exports[`Storyshots ApplyPage default 1`] = `
               htmlFor="FeedbackForm-\${this.props.name}"
             >
               Street Address
+              <span
+                aria-hidden="true"
+                className="t--req"
+              >
+                 
+                Required
+              </span>
             </label>
             <input
               className="txt-f txt-f--sm"
@@ -156,7 +181,6 @@ exports[`Storyshots ApplyPage default 1`] = `
               onBlur={[Function]}
               onChange={[Function]}
               placeholder="Street Address"
-              required={undefined}
               type="text"
               value=""
             />
@@ -173,6 +197,13 @@ exports[`Storyshots ApplyPage default 1`] = `
               htmlFor="FeedbackForm-\${this.props.name}"
             >
               Unit
+              <span
+                aria-hidden="true"
+                className="t--req"
+              >
+                 
+                Required
+              </span>
             </label>
             <input
               className="txt-f txt-f--sm"
@@ -181,7 +212,6 @@ exports[`Storyshots ApplyPage default 1`] = `
               onBlur={[Function]}
               onChange={[Function]}
               placeholder="Unit or Apartment #"
-              required={undefined}
               type="text"
               value=""
             />
@@ -202,6 +232,13 @@ exports[`Storyshots ApplyPage default 1`] = `
               htmlFor="FeedbackForm-\${this.props.name}"
             >
               City
+              <span
+                aria-hidden="true"
+                className="t--req"
+              >
+                 
+                Required
+              </span>
             </label>
             <input
               className="txt-f txt-f--sm"
@@ -210,7 +247,6 @@ exports[`Storyshots ApplyPage default 1`] = `
               onBlur={[Function]}
               onChange={[Function]}
               placeholder="City"
-              required={undefined}
               type="text"
               value=""
             />
@@ -227,6 +263,13 @@ exports[`Storyshots ApplyPage default 1`] = `
               htmlFor="FeedbackForm-\${this.props.name}"
             >
               State
+              <span
+                aria-hidden="true"
+                className="t--req"
+              >
+                 
+                Required
+              </span>
             </label>
             <input
               className="txt-f txt-f--sm"
@@ -235,7 +278,6 @@ exports[`Storyshots ApplyPage default 1`] = `
               onBlur={[Function]}
               onChange={[Function]}
               placeholder="State"
-              required={undefined}
               type="text"
               value=""
             />
@@ -252,6 +294,13 @@ exports[`Storyshots ApplyPage default 1`] = `
               htmlFor="FeedbackForm-\${this.props.name}"
             >
               Zip
+              <span
+                aria-hidden="true"
+                className="t--req"
+              >
+                 
+                Required
+              </span>
             </label>
             <input
               className="txt-f txt-f--sm"
@@ -260,7 +309,6 @@ exports[`Storyshots ApplyPage default 1`] = `
               onBlur={[Function]}
               onChange={[Function]}
               placeholder="Zip Code"
-              required={undefined}
               type="text"
               value=""
             />
@@ -275,6 +323,13 @@ exports[`Storyshots ApplyPage default 1`] = `
           htmlFor="FeedbackForm-\${this.props.name}"
         >
           Phone
+          <span
+            aria-hidden="true"
+            className="t--req"
+          >
+             
+            Required
+          </span>
         </label>
         <input
           className="txt-f txt-f--sm"
@@ -283,7 +338,6 @@ exports[`Storyshots ApplyPage default 1`] = `
           onBlur={[Function]}
           onChange={[Function]}
           placeholder="Phone Number"
-          required={undefined}
           type="text"
           value=""
         />
@@ -296,6 +350,13 @@ exports[`Storyshots ApplyPage default 1`] = `
           htmlFor="FeedbackForm-\${this.props.name}"
         >
           Email
+          <span
+            aria-hidden="true"
+            className="t--req"
+          >
+             
+            Required
+          </span>
         </label>
         <input
           className="txt-f txt-f--sm"
@@ -304,7 +365,6 @@ exports[`Storyshots ApplyPage default 1`] = `
           onBlur={[Function]}
           onChange={[Function]}
           placeholder="Email"
-          required={undefined}
           type="text"
           value=""
         />
@@ -317,6 +377,13 @@ exports[`Storyshots ApplyPage default 1`] = `
           htmlFor="FeedbackForm-\${this.props.name}"
         >
           Confirm Email
+          <span
+            aria-hidden="true"
+            className="t--req"
+          >
+             
+            Required
+          </span>
         </label>
         <input
           className="txt-f txt-f--sm"
@@ -325,7 +392,6 @@ exports[`Storyshots ApplyPage default 1`] = `
           onBlur={[Function]}
           onChange={[Function]}
           placeholder="Confirm Email"
-          required={undefined}
           type="text"
           value=""
         />
@@ -350,6 +416,13 @@ exports[`Storyshots ApplyPage default 1`] = `
           htmlFor="FeedbackForm-\${this.props.name}"
         >
           Type of Degree
+          <span
+            aria-hidden="true"
+            className="t--req"
+          >
+             
+            Required
+          </span>
         </label>
         <input
           className="txt-f txt-f--sm"
@@ -358,7 +431,6 @@ exports[`Storyshots ApplyPage default 1`] = `
           onBlur={[Function]}
           onChange={[Function]}
           placeholder="Type of Degree"
-          required={undefined}
           type="text"
           value=""
         />
@@ -371,6 +443,13 @@ exports[`Storyshots ApplyPage default 1`] = `
           htmlFor="FeedbackForm-\${this.props.name}"
         >
           Degree Attained
+          <span
+            aria-hidden="true"
+            className="t--req"
+          >
+             
+            Required
+          </span>
         </label>
         <input
           className="txt-f txt-f--sm"
@@ -379,7 +458,6 @@ exports[`Storyshots ApplyPage default 1`] = `
           onBlur={[Function]}
           onChange={[Function]}
           placeholder="Degree Attained"
-          required={undefined}
           type="text"
           value=""
         />
@@ -392,6 +470,13 @@ exports[`Storyshots ApplyPage default 1`] = `
           htmlFor="FeedbackForm-\${this.props.name}"
         >
           Educational Institution
+          <span
+            aria-hidden="true"
+            className="t--req"
+          >
+             
+            Required
+          </span>
         </label>
         <input
           className="txt-f txt-f--sm"
@@ -400,7 +485,6 @@ exports[`Storyshots ApplyPage default 1`] = `
           onBlur={[Function]}
           onChange={[Function]}
           placeholder="Educational Institution"
-          required={undefined}
           type="text"
           value=""
         />
@@ -413,6 +497,13 @@ exports[`Storyshots ApplyPage default 1`] = `
           htmlFor="FeedbackForm-\${this.props.name}"
         >
           Other Information
+          <span
+            aria-hidden="true"
+            className="t--req"
+          >
+             
+            Required
+          </span>
         </label>
         <input
           className="txt-f txt-f--sm"
@@ -421,7 +512,6 @@ exports[`Storyshots ApplyPage default 1`] = `
           onBlur={[Function]}
           onChange={[Function]}
           placeholder="Other Information"
-          required={undefined}
           type="text"
           value=""
         />
@@ -577,6 +667,13 @@ exports[`Storyshots TextInput default 1`] = `
     htmlFor="FeedbackForm-\${this.props.name}"
   >
     Zip Code
+    <span
+      aria-hidden="true"
+      className="t--req"
+    >
+       
+      Required
+    </span>
   </label>
   <input
     className="txt-f txt-f--sm"
@@ -585,7 +682,6 @@ exports[`Storyshots TextInput default 1`] = `
     onBlur=""
     onChange=""
     placeholder="Zip Code"
-    required={undefined}
     type="text"
     value=""
   />
@@ -616,7 +712,6 @@ exports[`Storyshots TextInput error 1`] = `
     onBlur=""
     onChange=""
     placeholder="Zip Code"
-    required={true}
     type="text"
     value=""
   />
@@ -652,7 +747,6 @@ exports[`Storyshots TextInput required 1`] = `
     onBlur=""
     onChange=""
     placeholder="Zip Code"
-    required={true}
     type="text"
     value=""
   />
