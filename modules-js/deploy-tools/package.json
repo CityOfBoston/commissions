@@ -18,6 +18,7 @@
     "preset": "@cityofboston/config-jest-typescript"
   },
   "dependencies": {
+    "@slack/client": "^4.3.1",
     "aws-sdk": "^2.245.1",
     "date-fns": "^1.29.0",
     "shelljs": "^0.8.2",
@@ -33,7 +34,7 @@
     "jest": "^22.4.0",
     "rimraf": "^2.6.2",
     "ts-jest": "^22.0.0",
-    "tsc-watch": "^1.0.21",
-    "typescript": "^2.8.1"
+    "tsc-watch": "^1.0.26",
+    "typescript": "^3.0.0"
   }
 }
