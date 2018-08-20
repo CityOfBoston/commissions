@@ -20,7 +20,6 @@ export default class FormWithElement extends React.Component<Props> {
           className="txt-l txt-l--sm"
         >
           {this.props.title}
-
           {this.props.required && (
             <span className="t--req" aria-hidden="true">
               {' '}

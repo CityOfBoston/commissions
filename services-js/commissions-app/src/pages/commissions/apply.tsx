@@ -182,6 +182,7 @@ export default class ApplyPage extends React.Component<Props> {
                       onChange={handleChange}
                       error={touched.firstName && errors.firstName}
                       onBlur={handleBlur}
+                      required
                     />
                   </div>
                   <div className="g--1 m-b300">
@@ -204,6 +205,7 @@ export default class ApplyPage extends React.Component<Props> {
                       onChange={handleChange}
                       error={touched.lastName && errors.lastName}
                       onBlur={handleBlur}
+                      required
                     />
                   </div>
                 </div>
@@ -217,6 +219,7 @@ export default class ApplyPage extends React.Component<Props> {
                       onChange={handleChange}
                       error={touched.address && errors.address}
                       onBlur={handleBlur}
+                      required
                     />
                   </div>
                   <div className="g--3 m-b300">
@@ -241,6 +244,7 @@ export default class ApplyPage extends React.Component<Props> {
                       onChange={handleChange}
                       error={touched.city && errors.city}
                       onBlur={handleBlur}
+                      required
                     />
                   </div>
                   <div className="g--2 m-b300">
@@ -252,6 +256,7 @@ export default class ApplyPage extends React.Component<Props> {
                       onChange={handleChange}
                       error={touched.state && errors.state}
                       onBlur={handleBlur}
+                      required
                     />
                   </div>
                   <div className="g--3 m-b300">
@@ -263,6 +268,7 @@ export default class ApplyPage extends React.Component<Props> {
                       onChange={handleChange}
                       error={touched.zip && errors.zip}
                       onBlur={handleBlur}
+                      required
                     />
                   </div>
                 </div>
@@ -282,6 +288,7 @@ export default class ApplyPage extends React.Component<Props> {
                   value={values.email}
                   onChange={handleChange}
                   error={touched.email && errors.email}
+                  required
                   onBlur={handleBlur}
                 />
                 <TextInput
@@ -292,6 +299,7 @@ export default class ApplyPage extends React.Component<Props> {
                   onChange={handleChange}
                   error={touched.confirmEmail && errors.confirmEmail}
                   onBlur={handleBlur}
+                  required
                 />
                 <hr className="hr hr--sq" />
                 <SectionHeader title="Education and Experience" />
@@ -396,7 +404,7 @@ export default class ApplyPage extends React.Component<Props> {
                 <SectionHeader title="Comments" />
                 <CommentInput
                   name="comments"
-                  placeholder="Other Comments"
+                  placeholder="Other Comments You Would Like Us to Know."
                   value={values.comments}
                   onChange={handleChange}
                   onBlur={handleBlur}
