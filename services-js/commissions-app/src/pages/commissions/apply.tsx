@@ -288,8 +288,8 @@ export default class ApplyPage extends React.Component<Props> {
                   value={values.email}
                   onChange={handleChange}
                   error={touched.email && errors.email}
-                  onBlur={handleBlur}
                   required
+                  onBlur={handleBlur}
                 />
                 <TextInput
                   title="Confirm Email"
