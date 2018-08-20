@@ -19,6 +19,7 @@ storiesOf('TextInput', module)
       name="zip"
       placeholder="Zip Code"
       value=""
+      required
       onChange=""
       onBlur=""
     />
@@ -30,6 +31,7 @@ storiesOf('TextInput', module)
       placeholder="Zip Code"
       error="Please Enter The Correct Zip Code, Zip Codes Contains 5 Digits."
       value=""
+      required
       onChange=""
       onBlur=""
     />

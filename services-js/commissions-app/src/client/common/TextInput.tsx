@@ -5,6 +5,7 @@ export interface Props {
   placeholder: string;
   title: string;
   error?: string;
+  required?: boolean;
   value: string;
   onChange: any;
   onBlur: any;
@@ -19,10 +20,12 @@ export default class FormWithElement extends React.Component<Props> {
           className="txt-l txt-l--sm"
         >
           {this.props.title}
-          <span className="t--req" aria-hidden="true">
-            {' '}
-            Required
-          </span>
+          {this.props.required && (
+            <span className="t--req" aria-hidden="true">
+              {' '}
+              Required
+            </span>
+          )}
         </label>
         <input
           name={this.props.name}
@@ -33,6 +36,7 @@ export default class FormWithElement extends React.Component<Props> {
           value={this.props.value}
           id="FeedbackForm-${this.props.name}"
           type="text"
+          required={this.props.required}
           onChange={this.props.onChange}
           onBlur={this.props.onBlur}
         />
