@@ -509,7 +509,7 @@ exports[`Storyshots ApplyPage default 1`] = `
           name="comments"
           onBlur={[Function]}
           onChange={[Function]}
-          placeholder="Other Comments You Would Like Us to Know."
+          placeholder="Other Comments"
           rows={10}
           value=""
         />

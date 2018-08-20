@@ -13,13 +13,13 @@ import fetchCommissions, {
 
 export interface Props {
   commissions: Commission[];
-  commissionID: string;
+  commissionID: string | undefined;
 }
 
 export default class ApplyPage extends React.Component<Props> {
-  static async getInitialProps(): Promise<Props> {
+  static async getInitialProps({ query: { commissionID } }): Promise<Props> {
     const commissions = await fetchCommissions();
-    return { commissions, commissionID: '' };
+    return { commissions, commissionID };
   }
 
   renderCommission(
@@ -55,6 +55,7 @@ export default class ApplyPage extends React.Component<Props> {
 
   render() {
     const { commissions } = this.props;
+    const { commissionID } = this.props;
 
     const commissionsWithoutOpenSeats = commissions.filter(
       commission => commission.openSeats === 0
@@ -83,7 +84,7 @@ export default class ApplyPage extends React.Component<Props> {
               phone: '',
               email: '',
               confirmEmail: '',
-              commissionIds: [] as string[],
+              commissionIds: [commissionID] as string[],
               typeOfDegree: '',
               degreeAttained: '',
               educationalInstitution: '',
@@ -395,7 +396,7 @@ export default class ApplyPage extends React.Component<Props> {
                 <SectionHeader title="Comments" />
                 <CommentInput
                   name="comments"
-                  placeholder="Other Comments You Would Like Us to Know."
+                  placeholder="Other Comments"
                   value={values.comments}
                   onChange={handleChange}
                   onBlur={handleBlur}
