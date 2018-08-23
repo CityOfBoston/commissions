@@ -1,11 +1,13 @@
 import React from 'react';
 import TextInput from '../../client/common/TextInput';
 import CommentInput from '../../client/common/CommentInput';
+import Uploader from '../../client/common/Uploader';
+import Checkbox from '../../client/common/Checkbox';
 import { Formik, FieldArray } from 'formik';
 import * as Yup from 'yup';
 import Head from 'next/head';
 import { SectionHeader, PUBLIC_CSS_URL } from '@cityofboston/react-fleet';
-import Checkbox from '../../client/common/Checkbox';
+import Router from 'next/router';
 
 import fetchCommissions, {
   Commission,
@@ -21,6 +23,11 @@ export default class ApplyPage extends React.Component<Props> {
     const commissions = await fetchCommissions();
     return { commissions, commissionID };
   }
+
+  handler = () =>
+    Router.push({
+      pathname: '/commissions/success',
+    });
 
   renderCommission(
     commission: Commission,
@@ -76,7 +83,7 @@ export default class ApplyPage extends React.Component<Props> {
               firstName: '',
               middleName: '',
               lastName: '',
-              address: '',
+              StreetAddress: '',
               unit: '',
               state: '',
               city: '',
@@ -90,6 +97,39 @@ export default class ApplyPage extends React.Component<Props> {
               educationalInstitution: '',
               otherInformation: '',
               comments: '',
+              resume: null,
+              coverLetter: null,
+            }}
+            onSubmit={values => {
+              let formData = new FormData();
+
+              formData.append('firstName', values.firstName);
+              formData.append('middleName', values.middleName);
+              formData.append('lastName', values.lastName);
+              formData.append('StreetAddress', values.StreetAddress);
+              formData.append('unit', values.unit);
+              formData.append('city', values.city);
+              formData.append('state', values.state);
+              formData.append('phone', values.phone);
+              formData.append('email', values.email);
+              formData.append('confirmEmail', values.confirmEmail);
+              formData.append('typeOfDegree', values.typeOfDegree);
+              formData.append('degreeAttained', values.degreeAttained);
+              formData.append(
+                'educationalInstitution',
+                values.educationalInstitution
+              );
+              formData.append('comments', values.comments);
+              fetch('http://localhost:3000/commissions/apply', {
+                method: 'POST',
+                body: JSON.stringify({
+                  firstName: 'Ren',
+                  lastName: 'Stimpy',
+                }),
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              }).then(alert);
             }}
             validationSchema={Yup.object().shape({
               zip: Yup.string()
@@ -97,11 +137,14 @@ export default class ApplyPage extends React.Component<Props> {
                 .matches(new RegExp(/^\d{5}$/), 'Zip Codes Contains 5 Digits'),
               firstName: Yup.string()
                 .required('Your First Name Is Required!')
-                .min(2, 'Your First Name Needs To Be Valid'),
+                .min(1, 'Your First Name Needs To Be Valid'),
+              middleName: Yup.string()
+                .required('Your Middle Name Is Required!')
+                .min(2, 'Your Middle Initial Needs To Be Valid'),
               lastName: Yup.string()
                 .required('Your Last Name Is Required!')
                 .min(2, 'Your Last Name Needs To Be Valid'),
-              address: Yup.string()
+              StreetAddress: Yup.string()
                 .required('Your Address Is Required!')
                 .min(2, 'Your Address Needs To Be Valid'),
               unit: Yup.string().min(1),
@@ -110,7 +153,7 @@ export default class ApplyPage extends React.Component<Props> {
                 .min(3),
               state: Yup.string()
                 .required('Your State Name Is Required!')
-                .min(4),
+                .min(2),
               phone: Yup.number()
                 .required('Your Telephone Number Is Required!')
                 .positive()
@@ -142,8 +185,9 @@ export default class ApplyPage extends React.Component<Props> {
                 'Other Information Needs To Be Valid'
               ),
               comments: Yup.string().required(),
+              coverLetter: Yup.mixed(),
+              resume: Yup.mixed(),
             })}
-            onSubmit={() => {}}
             render={({
               handleSubmit,
               values,
@@ -151,8 +195,9 @@ export default class ApplyPage extends React.Component<Props> {
               errors,
               touched,
               handleBlur,
+              setFieldValue,
             }) => (
-              <form onSubmit={handleSubmit}>
+              <form method="POST" name="form" onSubmit={handleSubmit}>
                 <div className="g">
                   <div className="sel">
                     <label
@@ -182,7 +227,6 @@ export default class ApplyPage extends React.Component<Props> {
                       onChange={handleChange}
                       error={touched.firstName && errors.firstName}
                       onBlur={handleBlur}
-                      required
                     />
                   </div>
                   <div className="g--1 m-b300">
@@ -205,7 +249,6 @@ export default class ApplyPage extends React.Component<Props> {
                       onChange={handleChange}
                       error={touched.lastName && errors.lastName}
                       onBlur={handleBlur}
-                      required
                     />
                   </div>
                 </div>
@@ -215,11 +258,10 @@ export default class ApplyPage extends React.Component<Props> {
                       title="Street Address"
                       name="StreetAddress"
                       placeholder="Street Address"
-                      value={values.address}
+                      value={values.StreetAddress}
                       onChange={handleChange}
-                      error={touched.address && errors.address}
+                      error={touched.StreetAddress && errors.StreetAddress}
                       onBlur={handleBlur}
-                      required
                     />
                   </div>
                   <div className="g--3 m-b300">
@@ -244,7 +286,6 @@ export default class ApplyPage extends React.Component<Props> {
                       onChange={handleChange}
                       error={touched.city && errors.city}
                       onBlur={handleBlur}
-                      required
                     />
                   </div>
                   <div className="g--2 m-b300">
@@ -256,7 +297,6 @@ export default class ApplyPage extends React.Component<Props> {
                       onChange={handleChange}
                       error={touched.state && errors.state}
                       onBlur={handleBlur}
-                      required
                     />
                   </div>
                   <div className="g--3 m-b300">
@@ -268,7 +308,6 @@ export default class ApplyPage extends React.Component<Props> {
                       onChange={handleChange}
                       error={touched.zip && errors.zip}
                       onBlur={handleBlur}
-                      required
                     />
                   </div>
                 </div>
@@ -288,7 +327,6 @@ export default class ApplyPage extends React.Component<Props> {
                   value={values.email}
                   onChange={handleChange}
                   error={touched.email && errors.email}
-                  required
                   onBlur={handleBlur}
                 />
                 <TextInput
@@ -299,7 +337,6 @@ export default class ApplyPage extends React.Component<Props> {
                   onChange={handleChange}
                   error={touched.confirmEmail && errors.confirmEmail}
                   onBlur={handleBlur}
-                  required
                 />
                 <hr className="hr hr--sq" />
                 <SectionHeader title="Education and Experience" />
@@ -399,6 +436,26 @@ export default class ApplyPage extends React.Component<Props> {
                 />
                 <hr className="hr hr--sq" />
                 <SectionHeader title="Reference Information" />
+                <Uploader
+                  title="Resume"
+                  name="resume"
+                  placeholder="Resume"
+                  onChange={event => {
+                    setFieldValue('file', event.currentTarget.files[0]);
+                  }}
+                  error={touched.resume && errors.resume}
+                  onBlur={handleBlur}
+                />
+                <Uploader
+                  title="Cover Letter"
+                  name="coverLetter"
+                  placeholder="Cover Letter"
+                  onChange={event => {
+                    setFieldValue('file', event.currentTarget.files[0]);
+                  }}
+                  error={touched.coverLetter && errors.coverLetter}
+                  onBlur={handleBlur}
+                />
 
                 <hr className="hr hr--sq" />
                 <SectionHeader title="Comments" />
@@ -410,7 +467,11 @@ export default class ApplyPage extends React.Component<Props> {
                   onBlur={handleBlur}
                 />
 
-                <button type="submit" className="btn btn--700">
+                <button
+                  type="submit"
+                  onClick={this.handler}
+                  className="btn btn--700"
+                >
                   Send Message
                 </button>
               </form>

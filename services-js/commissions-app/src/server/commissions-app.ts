@@ -157,6 +157,21 @@ export async function makeServer(port) {
     handler: (_, h) => h.redirect('/commissions/apply'),
   });
 
+  server.route({
+    method: 'POST',
+    path: '/commissions/apply',
+    handler(req) {
+      const payload: any = req.payload;
+      const firstName = payload.firstName;
+      const lastName = payload.lastName;
+
+      console.log(firstName);
+      console.log(lastName);
+      console.log('/commissions/apply');
+      return 'success';
+    },
+  });
+
   server.route(adminOkRoute);
 
   if (nextApp) {
